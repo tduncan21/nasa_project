@@ -6,13 +6,17 @@
   "scripts": {
     "install-server": "npm install --prefix server",
     "install-client": "npm install --prefix client",
-    "install": "npm run install-server && npm run install-client",
-    "server": "npm run watch --prefix server",
-    "client": "npm start --prefix client", 
+    "install": "npm run install-server & npm run install-client",
+    "server": "cd server && npm run watch",
+    "client": "cd client && npm start",
     "watch": "npm run server & npm run client",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "npm run build --prefix client && npm run start --prefix server",
+    "test": "npm test --prefix server && npm test --prefix client"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
 }
