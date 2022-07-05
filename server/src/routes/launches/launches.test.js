@@ -29,7 +29,7 @@ describe('Test POST /launches', () => {
         mission: "Test123",
         rocket: "Experimental IS1",
         target: "Kepler-186 f",
-        launchDate: "2" 
+        launchDate: "de" 
     }
     
 
