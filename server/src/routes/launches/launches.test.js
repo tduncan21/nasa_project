@@ -10,7 +10,7 @@ describe('Launches API', () => {
     describe('Test GET /launches', () => {
         test('It should return status 200', async () => {
             const response = await request(app)
-            .get('/launches')
+            .get('/v1/launches')
             .expect('Content-type', /json/)
             .expect(200);
     
@@ -41,7 +41,7 @@ describe('Launches API', () => {
     
         test('Should respond with 201 created', async () => {
             const response = await request(app)
-            .post('/launches')
+            .post('/v1/launches')
             .send(completeLaunchData)
             .expect('Content-type', /json/)
             .expect(201);
@@ -54,7 +54,7 @@ describe('Launches API', () => {
     
         test('It should catch missing required properties', async () => {
             const response = await request(app)
-            .post('/launches')
+            .post('/v1/launches')
             .send(launchDataWithoutDate)
             .expect('Content-type', /json/)
             .expect(400);
@@ -66,7 +66,7 @@ describe('Launches API', () => {
     
         test('Test for invalid dates', async () => {
             const response = await request(app)
-            .post('/launches')
+            .post('/v1/launches')
             .send(launchDataWithInvalidDate)
             .expect('Content-type', /json/)
             .expect(400);
@@ -87,7 +87,7 @@ describe('Launches API', () => {
     describe('Test DELETE /launches', () => {
         test('Test successfull deletion', async () => {
             const response = await request(app)
-            .delete('/launches/100')
+            .delete('/v1/launches/100')
             .expect('Content-type', /json/)
             .expect(response.body).toStrictEqual({
                 ok: true,

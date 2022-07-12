@@ -11,7 +11,7 @@ describe('Planets API', () => {
     describe('Test GET /planets', () => {
         test('It should return status 200', async () => {
             const response = await request(app)
-            .get('/planets')
+            .get('/v1/planets')
             .expect('Content-type', /json/)
             .expect(200);
         });
