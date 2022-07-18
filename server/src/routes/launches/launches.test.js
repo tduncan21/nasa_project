@@ -1,10 +1,12 @@
 const request = require('supertest');
 const app = require('../../app');
+const { loadPlanetsData } = require('../../models/planets.model');
 const {mongoConnect, mongoDisconnect} = require('../../services/mongo');
 
 describe('Launches API', () => {
     beforeAll(async () => {
         await mongoConnect();
+        await loadPlanetsData();
     }); 
 
     describe('Test GET /launches', () => {
@@ -37,8 +39,7 @@ describe('Launches API', () => {
             target: "Kepler-1410 b",
             launchDate: "de" 
         }
-        
-    
+            
         test('Should respond with 201 created', async () => {
             const response = await request(app)
             .post('/v1/launches')
@@ -89,7 +90,7 @@ describe('Launches API', () => {
             const response = await request(app)
             .delete('/v1/launches/100')
             .expect('Content-type', /json/)
-            .expect(response.body).toStrictEqual({
+            expect(response.body).toStrictEqual({
                 ok: true,
             });
         });
